@@ -19,12 +19,15 @@ function solveEquation(a, b, c) {
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   let S = amount - contribution; // тело кредита
   let P = percent / 100 / 12; // 1/12 процентной ставки
-  let n = ountMonths;
+  let n = countMonths;
 
-  if ((percent < 0 ||  contribution < 0 || amount < 0 || n < 0 ) || 
-    (isNaN(percent) === true|| isNaN(contribution) === true || isNaN(amount) === true || isNaN(countMonths) === true)) {
-        return "Ошибка данные введены неверно";
-    }
+  if (percent < 0 || isNaN(percent)) {
+    return "Параметр Процентная ставка содержит неправильное значение";
+  } else if (contribution < 0 || isNaN(contribution)) {
+    return "Параметр Cумма первоначального взноса содержит неправильное значение";
+  } else if (amount < 0 || isNaN(amount)) {
+    return "Параметр Сумма кредита содержит неправильное значение";
+  }
 
   let monthAmount = S * ( P + P / (((1 + P) ** n) - 1));
   let totalAmount = monthAmount * n;
