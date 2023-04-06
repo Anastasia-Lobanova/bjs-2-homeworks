@@ -25,14 +25,11 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   } else if (amount < 0 || isNaN(amount)) {
     return "Параметр Сумма кредита содержит неправильное значение";
   } else {
-
   let S = amount - contribution; // тело кредита
   let P = percent / 100 / 12; // 1/12 процентной ставки
   let n = countMonths;
-
   let monthAmount = S * ( P + (P / (((1 + P) ** n) - 1)));
   let totalAmount = (monthAmount * n).toFixed(2);
-
   return +totalAmount;
   }
 }
